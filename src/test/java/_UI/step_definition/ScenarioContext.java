@@ -1,7 +1,9 @@
 package _UI.step_definition;
 
+import _UI.pages.AdminPage;
 import _UI.pages.CommonPage;
 import _UI.pages.LoginPage;
+import _UI.pages.UserPage;
 import _UI.ui_utils.Selenium_utils;
 import common_util.ConfigReader;
 import io.cucumber.java.Scenario;
@@ -27,6 +29,8 @@ public class ScenarioContext {
      public LoginPage loginPage;
      public Selenium_utils seleniumUtils;
      public CommonPage commonPage;
+     public AdminPage adminPage;
+     public UserPage userPage;
 
 
      /**
@@ -46,6 +50,8 @@ public class ScenarioContext {
           loginPage = new LoginPage(driver);
           seleniumUtils = new Selenium_utils(scenarioContext);
           commonPage = new CommonPage(driver);
+          adminPage = new AdminPage(driver);
+          userPage = new UserPage(driver);
      }
 
      public void initializeDriver() {
