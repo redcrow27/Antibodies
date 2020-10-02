@@ -21,16 +21,16 @@ public class LoginPageTest {
         this.context = scenarioContext;
     }
 
-    @Given("This is sample scenario step")
-    public void this_is_sample_scenario_step() {
-        // Write code here that turns the phrase above into concrete actions
-        /** NOTE
-         *  This shows how to get your element from Login page
-         *  It's just example. Please follow rules of example
-         *
-         *  WebElement element = context.loginPage.sampleElement;
-         */
-    }
+//    @Given("This is sample scenario step")
+//    public void this_is_sample_scenario_step() {
+//        // Write code here that turns the phrase above into concrete actions
+//        /** NOTE
+//         *  This shows how to get your element from Login page
+//         *  It's just example. Please follow rules of example
+//         *
+//         *  WebElement element = context.loginPage.sampleElement;
+//         */
+//    }
 
 
 
