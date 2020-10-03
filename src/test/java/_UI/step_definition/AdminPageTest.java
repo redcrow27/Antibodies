@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
+import pojo.UserForm;
 
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class AdminPageTest {
 
     ScenarioContext context;
 
-    Faker faker = new Faker();
-    String id = faker.idNumber().valid();
+    UserForm userForm = new UserForm();
+    String id = userForm.getId();
 
 
     public AdminPageTest(ScenarioContext scenarioContext){
@@ -49,9 +50,9 @@ public class AdminPageTest {
                 case "ID":
                     context.commonPage.idField.sendKeys(id);
                 case "First Name":
-                    context.commonPage.firstNameField.sendKeys(faker.name().firstName());
+                    context.commonPage.firstNameField.sendKeys(userForm.getFirstName());
                 case "Last Name ":
-                    context.commonPage.lastNameField.sendKeys(faker.name().lastName());
+                    context.commonPage.lastNameField.sendKeys(userForm.getLastName());
                 case "Select role":
                     context.commonPage.selectRoleField.click();
                     context.commonPage.optionRole.click();
