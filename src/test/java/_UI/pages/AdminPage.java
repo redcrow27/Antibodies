@@ -1,5 +1,6 @@
 package _UI.pages;
 
+import com.github.javafaker.service.FakeValues;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
  * our objects so we can use them.
  */
 public class AdminPage {
+
+
 
     public AdminPage(WebDriver driver){
         PageFactory.initElements(driver, this);

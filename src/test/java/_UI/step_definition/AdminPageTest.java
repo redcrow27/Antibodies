@@ -1,5 +1,7 @@
 package _UI.step_definition;
 
+import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
@@ -13,6 +15,10 @@ import java.util.List;
 public class AdminPageTest {
 
     ScenarioContext context;
+
+    Faker faker = new Faker();
+    String id = faker.idNumber().valid();
+
 
     public AdminPageTest(ScenarioContext scenarioContext){
         this.context = scenarioContext;
@@ -30,4 +36,40 @@ public class AdminPageTest {
         }
         context.seleniumUtils.logInfo("Screenshot" , true);
     }
+
+    /**
+     * This method will fill-out Employee  form
+     */
+
+    @And("I fill out User Form  and click Enter Employee button")
+    public void Fill_User_Form(List<String> dataTable) {
+
+        for (int i = 0; i < 1; i++) {
+            switch (dataTable.get(i)) {
+                case "ID":
+                    context.commonPage.idField.sendKeys(id);
+                case "First Name":
+                    context.commonPage.firstNameField.sendKeys(faker.name().firstName());
+                case "Last Name ":
+                    context.commonPage.lastNameField.sendKeys(faker.name().lastName());
+                case "Select role":
+                    context.commonPage.selectRoleField.click();
+                    context.commonPage.optionRole.click();
+                case "Select department":
+                    context.commonPage.selectDeptField.click();
+                    context.commonPage.depOption.click();
+                default:
+                    System.out.println("Wrong Table Data");
+            }
+        }
+        context.commonPage.enterEmployee_btn.click();
+    }
+
+    /**
+     * This method validating Employee data was added to table
+     */
+
+
+
+
 }
