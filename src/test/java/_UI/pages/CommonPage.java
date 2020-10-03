@@ -69,6 +69,9 @@ public class CommonPage {
     @FindBy(xpath = "//th[@scope='row']")
     public List<WebElement> id_TableData;
 
+    @FindBy(xpath = "//th[@scope='col']")
+    public List<WebElement> headerList;
+
     /**
      * This method is not get any paramaters but
      * @return will return list of Employee data table names as a String

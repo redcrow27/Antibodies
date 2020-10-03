@@ -46,6 +46,20 @@ Feature: Admin Page tests
       | admin    |
       | user     |
 
+@header
+  Scenario Outline: Employee data table should have following headers:
+    Given I enter with "<username>" credentials
+    And I click "Sign in" button
+    Then I verify headers are displayed with following data:
+      |ID|
+      |First|
+      |Last|
+      |Role|
+      |Department|
+    Examples:
+      |username|
+      |admin   |
+      |user    |
 
 
 
