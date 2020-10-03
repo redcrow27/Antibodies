@@ -64,10 +64,27 @@ public class CommonPage {
     @FindBy(xpath = "//*[@class='btn-sm btn-info m-2']")
     public List<WebElement> all_10_25_50_btn_list;
 
-
-
     @FindBy(xpath = "//th[@scope='row']")
     public List<WebElement> id_TableData;
+
+    @FindBy(xpath = "(//table)[1]//tr/td")
+    public List<WebElement> roleTableList;
+
+    @FindBy(xpath = "((//table)[3]//tr)[2]/td[3]")
+    public WebElement firstRoleResult;
+
+    @FindBy(xpath = "//input[@name='keyword']")
+    public WebElement filterField;
+
+    @FindBy(xpath = "//button[text()='Search']")
+    public WebElement searchBtn;
+
+    @FindBy(xpath = "(//table)[3]")
+    public WebElement adminPageThirdTable;
+
+    @FindBy(xpath = "//table")
+    public WebElement userPageTable;
+
 
     /**
      * This method is not get any paramaters but

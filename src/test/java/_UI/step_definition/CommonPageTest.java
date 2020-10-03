@@ -3,6 +3,7 @@ package _UI.step_definition;
 import common_util.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import java.util.List;
@@ -77,6 +78,7 @@ public class CommonPageTest {
                 System.out.println("Invalid button name: " + button);
         }
         context.seleniumUtils.logInfo(" Clicked button: " + button, false);
+        Assert.assertEquals("", "");
     }
 
 
@@ -113,8 +115,45 @@ public class CommonPageTest {
             }
             context.seleniumUtils.logInfo("Clicked button: " + s, true);
         }
-
     }
+
+
+    /**
+     * This method will search any keyword
+     * @param keyword String keyword
+     * @param page String page name
+     */
+    @Then("I verify search for any employee based on any keyword such as {string} in {string} Employee data table")
+    public void iVerifySearchForAnyEmployeeBasedOnAnyKeywordSuchAsInEmployeeDataTable(String keyword, String page) {
+        switch (page.toLowerCase()) {
+            case "admin page":
+                context.seleniumUtils.moveIntoView(context.commonPage.filterField);
+                context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
+                context.seleniumUtils.click(context.commonPage.searchBtn);
+                context.seleniumUtils.sleep(2000);
+                String expected = context.commonPage.adminPageThirdTable.findElement(By.xpath("//*[text()='"+ keyword +"']")).getText();
+                Assert.assertEquals(keyword, expected);
+                context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected, false);
+                break;
+            case "user page":
+                context.seleniumUtils.moveIntoView(context.commonPage.filterField);
+                context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
+                context.seleniumUtils.click(context.commonPage.searchBtn);
+                context.seleniumUtils.sleep(2000);
+                String expected2 = context.commonPage.userPageTable.findElement(By.xpath("//*[text()='"+ keyword +"']")).getText();
+                Assert.assertEquals(keyword, expected2);
+                context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected2, false);
+                break;
+            default:
+                System.out.println("Invalid page");
+        }
+    }
+
+
+
+
+
+
 
 
 
