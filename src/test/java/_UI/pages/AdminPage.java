@@ -23,4 +23,9 @@ public class AdminPage {
      */
     @FindBy(id = "valueOfId")
     public WebElement sampleElement;
+
+    @FindBy(xpath = "//table[@class='table']/thead")
+    public WebElement adminTable;
+
+   public String[] employeeData = {"ID", "First", "Last", "Role", "Department"};
 }

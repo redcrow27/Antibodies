@@ -61,6 +61,12 @@ Feature: Admin Page tests
       |admin   |
       |user    |
 
+  @inputForm
+  Scenario: Verify Employee Input form and Employee data table displayed.
+    Given I enter with "admin" credentials
+    And I click "Sign In" button
+   Then I verify same Employee Input form and Employee data table displayed
+
 
 
 
