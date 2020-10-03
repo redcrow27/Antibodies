@@ -2,6 +2,10 @@ package _UI.step_definition;
 
 import common_util.ConfigReader;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import org.testng.Assert;
+
+import java.util.List;
 
 /**
  * Here you will store all those steps that can be used in any pages and doesnt belong to any of them
@@ -77,6 +81,40 @@ public class CommonPageTest {
 
 
 
+    /**
+     * This method will click given button
+     * To verify the buttons to limit display count are functional
+     */
+
+    @Then("I verify the buttons to limit display count are functional:")
+    public void LimitDisplayCount_test(List<String> buttons) {
+        for (String s : buttons) {
+            switch (s) {
+                case "10btn":
+                    context.commonPage.all_10_25_50_btn_list.get(0).click();
+                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(0).getText()) >= context.commonPage.id_TableData.size());
+                    break;
+                case "25btn":
+                    context.commonPage.all_10_25_50_btn_list.get(1).click();
+                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(1).getText()) >= context.commonPage.id_TableData.size());
+                    break;
+                case "50btn":
+                    context.commonPage.all_10_25_50_btn_list.get(2).click();
+                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) >= context.commonPage.id_TableData.size());
+                    break;
+                case "All_bnt":
+                    context.commonPage.all_10_25_50_btn_list.get(3).click();
+                    if (context.commonPage.id_TableData.size() >= 50) {
+                        Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) <= context.commonPage.id_TableData.size());
+                    }
+                    break;
+                default:
+                    System.out.println("Wrong button");
+            }
+            context.seleniumUtils.logInfo("Clicked button: " + s, true);
+        }
+
+    }
 
 
 

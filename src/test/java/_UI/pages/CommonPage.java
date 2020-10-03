@@ -61,6 +61,9 @@ public class CommonPage {
     @FindBy(xpath = "//*[text()='Enter Employee']")
     public WebElement enterEmployee_btn;
 
+    @FindBy(xpath = "//*[@class='btn-sm btn-info m-2']")
+    public List<WebElement> all_10_25_50_btn_list;
+
 
 
     @FindBy(xpath = "//th[@scope='row']")

@@ -32,6 +32,20 @@ Feature: Admin Page tests
       |Select department|
     And I verify the Data is populate in Employee data table
 
+@Count_Option
+  Scenario Outline: As all roles I need an option to limit the display count of the Employee data table.
+    Given I enter with "<username>" credentials
+    And I click "Sign in" button
+    Then I verify the buttons to limit display count are functional:
+      | 10btn   |
+      | 25btn   |
+      | 50btn   |
+      | All_bnt |
+    Examples:
+      | username |
+      | admin    |
+      | user     |
+
 
 
 
