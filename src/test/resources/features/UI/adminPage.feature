@@ -48,7 +48,23 @@ Feature: Admin Page tests
       | admin    |
       | user     |
 
-  @role
+
+@header
+  Scenario Outline: Employee data table should have following headers:
+    Given I enter with "<username>" credentials
+    And I click "Sign in" button
+    Then I verify headers are displayed with following data:
+      |ID|
+      |First|
+      |Last|
+      |Role|
+      |Department|
+    Examples:
+      |username|
+      |admin   |
+      |user    |
+
+  @search
   Scenario Outline: As all roles I should be able to search for any employee based on any keyword in Employee data table
     Given I enter with "<username>" credentials
     And I click "Sign in" button

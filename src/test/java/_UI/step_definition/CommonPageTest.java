@@ -22,13 +22,15 @@ public class CommonPageTest {
     /**
      * This method will open giving page URL
      * Rigth now will open Login Page
+     *
      * @param pageName Login Page
      */
     @Given("I open {string}")
     public void i_open(String pageName) {
-        String loginPageURL =  ConfigReader.readProperty("url", "src/test/resources/properties/configuration.properties");
+        String loginPageURL = ConfigReader.readProperty("url", "src/test/resources/properties/configuration.properties");
         switch (pageName.toLowerCase()) {
-            case "login page": context.driver.get(loginPageURL);
+            case "login page":
+                context.driver.get(loginPageURL);
                 context.seleniumUtils.logInfo(" Entered URL: " + loginPageURL, false);
                 break;
             default:
@@ -40,6 +42,7 @@ public class CommonPageTest {
      * This method enter given login credentials
      * And will get the Password from configuration.properties
      * You just need to specify which Username
+     *
      * @param username admin , user
      */
     @Given("I enter with {string} credentials")
@@ -66,6 +69,7 @@ public class CommonPageTest {
     /**
      * This method will click given button
      * Please follow same format
+     *
      * @param button will take a String button name
      */
     @Given("I click {string} button")
@@ -80,7 +84,6 @@ public class CommonPageTest {
         context.seleniumUtils.logInfo(" Clicked button: " + button, false);
         Assert.assertEquals("", "");
     }
-
 
 
     /**
@@ -149,11 +152,15 @@ public class CommonPageTest {
         }
     }
 
-
-
-
-
-
+    @Then("I verify headers are displayed with following data:")
+    public void i_verify_headers_are_displayed_with_following_data(List<String> headerList) {
+        context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
+        for (int i = 0; i < headerList.size(); i++) {
+            context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
+            Assert.assertEquals(headerList.get(i), context.commonPage.headerList.get(i).getText());
+            context.seleniumUtils.logInfo("Actual header: " + headerList.get(i) + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
+        }
+    }
 
 
 
