@@ -123,8 +123,9 @@ public class CommonPageTest {
 
     /**
      * This method will search any keyword
+     *
      * @param keyword String keyword
-     * @param page String page name
+     * @param page    String page name
      */
     @Then("I verify search for any employee based on any keyword such as {string} in {string} Employee data table")
     public void iVerifySearchForAnyEmployeeBasedOnAnyKeywordSuchAsInEmployeeDataTable(String keyword, String page) {
@@ -134,7 +135,7 @@ public class CommonPageTest {
                 context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
                 context.seleniumUtils.click(context.commonPage.searchBtn);
                 context.seleniumUtils.sleep(2000);
-                String expected = context.commonPage.adminPageThirdTable.findElement(By.xpath("//*[text()='"+ keyword +"']")).getText();
+                String expected = context.commonPage.adminPageThirdTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
                 Assert.assertEquals(keyword, expected);
                 context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected, false);
                 break;
@@ -143,7 +144,7 @@ public class CommonPageTest {
                 context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
                 context.seleniumUtils.click(context.commonPage.searchBtn);
                 context.seleniumUtils.sleep(2000);
-                String expected2 = context.commonPage.userPageTable.findElement(By.xpath("//*[text()='"+ keyword +"']")).getText();
+                String expected2 = context.commonPage.userPageTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
                 Assert.assertEquals(keyword, expected2);
                 context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected2, false);
                 break;
@@ -161,7 +162,6 @@ public class CommonPageTest {
             context.seleniumUtils.logInfo("Actual header: " + headerList.get(i) + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
     }
-
 
 
 }
