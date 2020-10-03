@@ -14,18 +14,18 @@ import java.util.List;
  */
 public class CommonPage {
 
-    public CommonPage(WebDriver driver){
+    public CommonPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
     /**
-     *  Example creating element
+     * Example creating element
      */
     @FindBy(id = "valueOfId")
     public WebElement sampleElement;
 
     /**
-     *  I added most of Common Elements here because we will use in all pages
+     * I added most of Common Elements here because we will use in all pages
      */
 
     @FindBy(name = "username")
@@ -64,16 +64,34 @@ public class CommonPage {
     @FindBy(xpath = "//*[@class='btn-sm btn-info m-2']")
     public List<WebElement> all_10_25_50_btn_list;
 
-
-
     @FindBy(xpath = "//th[@scope='row']")
     public List<WebElement> id_TableData;
+
+    @FindBy(xpath = "(//table)[1]//tr/td")
+    public List<WebElement> roleTableList;
+
+    @FindBy(xpath = "((//table)[3]//tr)[2]/td[3]")
+    public WebElement firstRoleResult;
+
+    @FindBy(xpath = "//input[@name='keyword']")
+    public WebElement filterField;
+
+    @FindBy(xpath = "//button[text()='Search']")
+    public WebElement searchBtn;
+
+    @FindBy(xpath = "(//table)[3]")
+    public WebElement adminPageThirdTable;
+
+    @FindBy(xpath = "//table")
+    public WebElement userPageTable;
 
     @FindBy(xpath = "//th[@scope='col']")
     public List<WebElement> headerList;
 
+
     /**
      * This method is not get any paramaters but
+     *
      * @return will return list of Employee data table names as a String
      */
     public List<String> employeeDataTable() {
@@ -88,6 +106,7 @@ public class CommonPage {
 
     /**
      * This method is not get any paramaters but
+     *
      * @return will return list of Employee data table names as a WebElement
      */
     public List<WebElement> empDataTableEl() {
