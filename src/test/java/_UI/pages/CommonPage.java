@@ -52,6 +52,20 @@ public class CommonPage {
     @FindBy(xpath = "//*[text()='Select department']")
     public WebElement selectDeptField;
 
+    @FindBy(xpath = "//form/select/option[7]")
+    public WebElement depOption;
+
+    @FindBy(xpath = "//td/select/option[3]")
+    public WebElement optionRole;
+
+    @FindBy(xpath = "//*[text()='Enter Employee']")
+    public WebElement enterEmployee_btn;
+
+
+
+    @FindBy(xpath = "//th[@scope='row']")
+    public List<WebElement> id_TableData;
+
     /**
      * This method is not get any paramaters but
      * @return will return list of Employee data table names as a String

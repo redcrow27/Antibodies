@@ -21,6 +21,18 @@ Feature: Admin Page tests
     |admin   |
     |user    |
 
+  Scenario: When I fill out User Form  and click Enter Employee button it should populate in Employee data table
+    Given I enter with "admin" credentials
+    Then I click "Sign in" button
+    And I fill out User Form  and click Enter Employee button
+      |ID|
+      |First Name|
+      |Last Name |
+      |Select role|
+      |Select department|
+
+
+
 
 
 
