@@ -63,13 +63,21 @@ public class AdminPageTest {
             }
         }
         context.commonPage.enterEmployee_btn.click();
+
+        context.seleniumUtils.logInfo("Screenshot" , true);
     }
 
     /**
      * This method validating Employee data was added to table
      */
 
-
-
-
+    @And("I verify the Data is populate in Employee data table")
+    public void Verifying_the_data_is_in_employee_data_table() {
+        for (int i = 0; i < context.commonPage.id_TableData.size(); i++) {
+            if (id.equals(context.commonPage.id_TableData.get(i).getText())) {
+                Assert.assertEquals(id, context.commonPage.id_TableData.get(i).getText(), "Data Table contains populated ID ");
+            }
+        }
+        context.seleniumUtils.logInfo("Screenshot" , true);
+    }
 }

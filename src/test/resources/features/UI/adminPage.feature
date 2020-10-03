@@ -20,7 +20,7 @@ Feature: Admin Page tests
     |username|
     |admin   |
     |user    |
-
+@UserFill-out_Form
   Scenario: When I fill out User Form  and click Enter Employee button it should populate in Employee data table
     Given I enter with "admin" credentials
     Then I click "Sign in" button
@@ -30,6 +30,8 @@ Feature: Admin Page tests
       |Last Name |
       |Select role|
       |Select department|
+    And I verify the Data is populate in Employee data table
+
 
 
 
