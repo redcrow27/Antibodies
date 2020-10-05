@@ -78,6 +78,8 @@ public class CommonPageTest {
             case "sign in":
                 context.seleniumUtils.click(context.commonPage.submitBtn);
                 break;
+            case "copy token":
+                context.seleniumUtils.click(context.adminPage.copyTokenBtn);
             default:
                 System.out.println("Invalid button name: " + button);
         }

@@ -7,6 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -17,50 +21,55 @@ import java.util.Set;
 public class Selenium_utils {
     ScenarioContext context;
 
-    public Selenium_utils(ScenarioContext scenarioContext){
+    public Selenium_utils(ScenarioContext scenarioContext) {
         context = scenarioContext;
     }
 
-    public void quitDriver(){
+    public void quitDriver() {
         context.driver.quit();
         context.driver = null;
     }
 
     /**
      * This method will make driver to sleep with given time
+     *
      * @param milliseconds it will take int "1sec = 1000"
      */
-    public static void sleep(long milliseconds){
-        try{
+    public static void sleep(long milliseconds) {
+        try {
             Thread.sleep(milliseconds);
-        }catch (InterruptedException e){
-            e.printStackTrace();;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            ;
         }
     }
 
     /**
      * This method will wait till element is clickable
+     *
      * @param element it will take an element
      */
-    public void waitForClickability(WebElement element){
+    public void waitForClickability(WebElement element) {
         WebDriverWait wait = new WebDriverWait(context.driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     /**
      * This method will wait till element is visible
+     *
      * @param element it will take an element
      */
-    public void waitForVisibility(WebElement element){
+    public void waitForVisibility(WebElement element) {
         WebDriverWait wait = new WebDriverWait(context.driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     /**
      * This method will wait till all elements is visible
+     *
      * @param elementList it will take list of elements
      */
-    public void waitForVisibilityOfAll(List<WebElement> elementList){
+    public void waitForVisibilityOfAll(List<WebElement> elementList) {
         WebDriverWait wait = new WebDriverWait(context.driver, 10);
         wait.until(ExpectedConditions.visibilityOfAllElements(elementList));
     }
@@ -68,8 +77,8 @@ public class Selenium_utils {
     /**
      * This method will wait till page to load
      */
-    public void waitForPageToLoad(){
-        ExpectedCondition<Boolean> pageLoadCondition = driver -> ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+    public void waitForPageToLoad() {
+        ExpectedCondition<Boolean> pageLoadCondition = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
         WebDriverWait wait = new WebDriverWait(context.driver, 10);
         wait.until(pageLoadCondition);
     }
@@ -77,16 +86,17 @@ public class Selenium_utils {
     /**
      * This method will wait till alert
      */
-    public void waitForAlert(){
+    public void waitForAlert() {
         WebDriverWait wait = new WebDriverWait(context.driver, 5);
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
     /**
      * This method will click to button and will highlights
+     *
      * @param element it will take an element
      */
-    public void click(WebElement element){
+    public void click(WebElement element) {
         waitForClickability(element);
         highlightElement(element);
         element.click();
@@ -94,10 +104,11 @@ public class Selenium_utils {
 
     /**
      * This method will send keys
+     *
      * @param element it will take an element
-     * @param input enter string value
+     * @param input   enter string value
      */
-    public void sendKeys(WebElement element, String input){
+    public void sendKeys(WebElement element, String input) {
         waitForVisibility(element);
         highlightElement(element);
         element.sendKeys(input);
@@ -105,10 +116,11 @@ public class Selenium_utils {
 
     /**
      * This method will get text of element
+     *
      * @param element it will take an element
      * @return it will return element's text value as a String
      */
-    public String getText(WebElement element){
+    public String getText(WebElement element) {
         waitForVisibility(element);
         highlightElement(element);
         return element.getText();
@@ -116,12 +128,13 @@ public class Selenium_utils {
 
     /**
      * This method will move into view
+     *
      * @param element it will take an element
      */
-    public void moveIntoView(WebElement element){
-        try{
-            ((JavascriptExecutor)context.driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        }catch (Exception e){
+    public void moveIntoView(WebElement element) {
+        try {
+            ((JavascriptExecutor) context.driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         highlightElement(element);
@@ -129,20 +142,21 @@ public class Selenium_utils {
 
     /**
      * This method will highlight element
+     *
      * @param element it will take an element
      */
-    public void highlightElement(WebElement element){
-        JavascriptExecutor executor = (JavascriptExecutor)context.driver;
+    public void highlightElement(WebElement element) {
+        JavascriptExecutor executor = (JavascriptExecutor) context.driver;
 
-        for (int i = 0; i < 2; i++){
-            try{
-                if(i == 0){
+        for (int i = 0; i < 2; i++) {
+            try {
+                if (i == 0) {
                     executor.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black; border:3px solid red; background: yellow");
-                }else {
+                } else {
                     sleep(300);
                     executor.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -150,54 +164,57 @@ public class Selenium_utils {
 
     /**
      * This method will switch to window
+     *
      * @param currentPageID it will take String page ID
      */
-    public void switchToWindow(String currentPageID){
+    public void switchToWindow(String currentPageID) {
         Set<String> set = context.driver.getWindowHandles();
-        for (String window: set){
+        for (String window : set) {
             if (!window.equalsIgnoreCase(currentPageID)) context.driver.switchTo().window(window);
         }
     }
 
     /**
-     *  This method will take screenshot of page
+     * This method will take screenshot of page
      */
-    public void takeScreenshot(){
+    public void takeScreenshot() {
         waitForPageToLoad();
-        try{
+        try {
             byte[] screenshot = ((TakesScreenshot) context.driver).getScreenshotAs(OutputType.BYTES);
             context.scenario.attach(screenshot, "image/png", "Screenshot | " + DateTime.CURRENT_DATETIME);
-        }catch (WebDriverException e){
+        } catch (WebDriverException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * This method will move to element and then take a screenshot
+     *
      * @param element it will take an element
      */
-    public void takeScreenshot(WebElement element){
+    public void takeScreenshot(WebElement element) {
         waitForPageToLoad();
         moveIntoView(element);
-        JavascriptExecutor executor = (JavascriptExecutor)context.driver;
+        JavascriptExecutor executor = (JavascriptExecutor) context.driver;
 
-        try{
+        try {
             executor.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black; border:3px solid red; background: yellow");
             byte[] screenshot = ((TakesScreenshot) context.driver).getScreenshotAs(OutputType.BYTES);
             context.scenario.attach(screenshot, "image/png", "Screenshot | " + DateTime.CURRENT_DATETIME);
             executor.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
-        }catch (WebDriverException e){
+        } catch (WebDriverException e) {
             e.printStackTrace();
         }
     }
 
     /**
      * This method will add info to report
-     * @param msg will take a message as a String
+     *
+     * @param msg            will take a message as a String
      * @param takeScreenshot if make true it will take screen shot as well
      *                       but while it false is not going to take screen shot
      */
-    public void logInfo(String msg, boolean takeScreenshot){
+    public void logInfo(String msg, boolean takeScreenshot) {
         context.scenario.log(DateTime.CURRENT_DATETIME + " INFO: " + msg);
         if (takeScreenshot)
             takeScreenshot();
@@ -217,6 +234,23 @@ public class Selenium_utils {
                 context.driver.switchTo().window(child_window);
             }
         }
+    }
+
+    /**
+     * This will method will return token after clicking to Copy Token Btn
+     * @return Bearer Token as a String
+     */
+    public String getClipboardData() {
+        String localClipboardData = "";
+        try {
+            localClipboardData = (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return localClipboardData;
     }
 
 

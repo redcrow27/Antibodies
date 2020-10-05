@@ -28,4 +28,7 @@ public class AdminPage {
     public WebElement adminTable;
 
    public String[] employeeData = {"ID", "First", "Last", "Role", "Department"};
+
+   @FindBy(xpath = "//button[text()='Copy Token']")
+    public WebElement copyTokenBtn;
 }

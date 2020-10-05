@@ -3,9 +3,15 @@ package _UI.step_definition;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pojo.UserForm;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -91,5 +97,13 @@ public class AdminPageTest {
             Assert.assertEquals(context.adminPage.employeeData[i], context.commonPage.headerList.get(i).getText());
             context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
+    }
+
+
+    @Then("I verify Token is available")
+    public void iVerifyTokenIsAvailable() {
+        context.seleniumUtils.click(context.adminPage.copyTokenBtn);
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage.copyTokenBtn.getText() , false);
+        context.seleniumUtils.logInfo("Bearer token: " + context.seleniumUtils.getClipboardData(), false);
     }
 }
