@@ -12,7 +12,7 @@ import org.testng.annotations.DataProvider;
                 "rerun:target/re-run.txt"
         },
 
-        tags = "@userPage"
+        tags = "@AddNewroleAndDelete"
         ,dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
