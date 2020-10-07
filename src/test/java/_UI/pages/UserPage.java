@@ -20,4 +20,17 @@ public class UserPage {
      */
     @FindBy(id = "valueOfId")
     public WebElement sampleElement;
+
+    @FindBy(xpath = "//div/input[@name='username']")
+    public WebElement userLoginButton;
+
+    @FindBy(xpath = "//div/input[@type='password']")
+    public WebElement userPasswordButton;
+
+    @FindBy(xpath = "//form/button")
+    public WebElement LogInButton;
+
+    @FindBy(xpath = "//div/nav")
+    public WebElement TextHeader;
+
 }
