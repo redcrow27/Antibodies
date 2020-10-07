@@ -110,4 +110,21 @@ public class AdminPageTest {
     }
 
 
+    @Given("I create new role")
+    public void i_create_new_role() {
+      context.adminPage.createRole.sendKeys("Sould Keeper");
+      context.adminPage.addButton.click();
+      Assert.assertEquals("Soul Keeper","Soul Keeper");
+
+    }
+
+    @Then("I delete the existing one")
+    public void i_delete_the_existing_one() {
+        context.seleniumUtils.waitForPageToLoad();
+        context.adminPage.DeleteRole.click();
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage , true);
+
+    }
+
+
 }
