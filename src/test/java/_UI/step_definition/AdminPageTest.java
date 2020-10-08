@@ -1,11 +1,19 @@
 package _UI.step_definition;
 
 import com.github.javafaker.Faker;
+import common_util.ConfigReader;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pojo.UserForm;
 
+import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -92,4 +100,31 @@ public class AdminPageTest {
             context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
     }
+
+
+    @Then("I verify Token is available")
+    public void iVerifyTokenIsAvailable() {
+        context.seleniumUtils.click(context.adminPage.copyTokenBtn);
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage.copyTokenBtn.getText() , false);
+        context.seleniumUtils.logInfo("Bearer token: " + context.seleniumUtils.getClipboardData(), false);
+    }
+
+
+    @Given("I create new role")
+    public void i_create_new_role() {
+      context.adminPage.createRole.sendKeys("Sould Keeper");
+      context.adminPage.addButton.click();
+      Assert.assertEquals("Soul Keeper","Soul Keeper");
+
+    }
+
+    @Then("I delete the existing one")
+    public void i_delete_the_existing_one() {
+        context.seleniumUtils.waitForPageToLoad();
+        context.adminPage.DeleteRole.click();
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage , true);
+
+    }
+
+
 }

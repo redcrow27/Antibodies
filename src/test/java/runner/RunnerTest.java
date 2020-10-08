@@ -11,18 +11,17 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json",
                 "rerun:target/re-run.txt"
         },
-
-        tags = "@inputForm"
-        ,dryRun = false
+        tags = "",
+        dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
 
-        /**
-         * This method will run tests on parallel
-         * when parallel = true
-         */
-        @DataProvider(parallel = false)
-        public Object[][] scenarios(){
-                return super.scenarios();
-        }
+    /**
+     * This method will run tests on parallel
+     * when parallel = true
+     */
+    @DataProvider(parallel = false)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
 }

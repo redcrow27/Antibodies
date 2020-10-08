@@ -28,4 +28,16 @@ public class AdminPage {
     public WebElement adminTable;
 
    public String[] employeeData = {"ID", "First", "Last", "Role", "Department"};
+
+   @FindBy(xpath = "//button[text()='Copy Token']")
+    public WebElement copyTokenBtn;
+
+   @FindBy(xpath = "//form/input[@id='inputArea1']")
+    public WebElement createRole;
+
+   @FindBy(xpath = "//*[contains(text(),'Add')]")
+    public WebElement addButton;
+
+   @FindBy(xpath = "//button[@class='btn btn-primary roleDelete']")
+    public WebElement DeleteRole;
 }

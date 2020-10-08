@@ -49,16 +49,16 @@ Feature: Admin Page tests
       | user     |
 
 
-@header
+  @header
   Scenario Outline: Employee data table should have following headers:
     Given I enter with "<username>" credentials
     And I click "Sign in" button
     Then I verify headers are displayed with following data:
-      |ID|
-      |First|
-      |Last|
-      |Role|
-      |Department|
+      | ID         |
+      | First      |
+      | Last       |
+      | Role       |
+      | Department |
     Examples:
       |username|
       |admin   |
@@ -70,6 +70,9 @@ Feature: Admin Page tests
     Given I enter with "admin" credentials
     And I click "Sign In" button
    Then I verify same Employee Input form and Employee data table displayed
+      | username |
+      | admin    |
+      | user     |
 
 
   @search
@@ -78,9 +81,34 @@ Feature: Admin Page tests
     And I click "Sign in" button
     Then I verify search for any employee based on any keyword such as "SDET" in "<page name>" Employee data table
     Examples:
+
       | username |page name|
       | admin    |admin page|
       | user     |user page |
+      | username | page name  |
+      | admin    | admin page |
+      | user     | user page  |
+
+  @inputForm
+  Scenario: Verify Employee Input form and Employee data table displayed.
+    Given I enter with "admin" credentials
+    And I click "Sign In" button
+    Then I verify same Employee Input form and Employee data table displayed
+
+
+  @token
+  Scenario: Verify Copy Token button will give Bearer Token
+    Given I enter with "admin" credentials
+    And I click "Sign In" button
+    Then I verify Token is available
+
+  @AddNewroleAndDelete
+  Scenario: I add new role and delete the existing one
+    Given I enter with "admin" credentials
+    And I click "Sign in" button
+    And I create new role
+    Then I delete the existing one
+
 
 
 
