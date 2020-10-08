@@ -8,11 +8,10 @@ Feature: Login Page tests
 #  Given This is sample scenario step
 
 
-Scenario Outline: Login Page Test
-  Given I enter with "<username>" credentials
-  And I click "Sign in" button
-  Examples:
-    |username|
-    |admin   |
-    |user    |
+Scenario: Login Page Test
+  Given I verify "username" field is displayed
+  And I verify "password" field is displayed
+  Then I verify "sign in" button is displayed
+
+
 

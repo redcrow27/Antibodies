@@ -64,14 +64,14 @@ Feature: Admin Page tests
       |admin   |
       |user    |
 
-<<<<<<< HEAD
+
   @inputForm
   Scenario: Verify Employee Input form and Employee data table displayed.
     Given I enter with "admin" credentials
     And I click "Sign In" button
    Then I verify same Employee Input form and Employee data table displayed
 
-=======
+
   @search
   Scenario Outline: As all roles I should be able to search for any employee based on any keyword in Employee data table
     Given I enter with "<username>" credentials
@@ -81,7 +81,7 @@ Feature: Admin Page tests
       | username |page name|
       | admin    |admin page|
       | user     |user page |
->>>>>>> ec00876868e1eff26c59dc9ada0c85d1535cabaa
+
 
 
 
