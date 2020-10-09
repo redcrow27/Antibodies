@@ -10,10 +10,10 @@ import io.restassured.http.ContentType;
 
 import static org.hamcrest.Matchers.is;
 
-public class ExampleApiTest {
+public class ApiTest {
     ScenarioContext context;
 
-    public ExampleApiTest(ScenarioContext scenarioContext){
+    public ApiTest(ScenarioContext scenarioContext){
         context = scenarioContext;
     }
 
