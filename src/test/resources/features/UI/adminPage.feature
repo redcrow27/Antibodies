@@ -117,6 +117,12 @@ Feature: Admin Page tests
   And I enter  the new Role Tester  then  I click the add button
   Then I enter Department Role and I click add button
 
+@Delete_Dep/Role
+  Scenario:If any role or department is assigned to an employee I should not be able to delete it.
+    Given I enter with "admin" credentials
+    Then I click "Sign in" button
+    And  I verify Delete role and department in case if it's assigned
+
 
 
 
