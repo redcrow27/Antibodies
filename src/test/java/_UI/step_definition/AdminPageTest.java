@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.sql.Driver;
 import java.util.List;
 
 /**
@@ -125,6 +126,34 @@ public class AdminPageTest {
         context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage , true);
 
     }
+    @Given("I go to Admin page")
+    public void i_go_to_admin_page() {
+      context.adminPage.username.sendKeys("admin");
+      context.adminPage.password.sendKeys("admin123");
+      context.seleniumUtils.click(context.adminPage.signIn);
+      Assert.assertTrue(context.adminPage.signIn.isDisplayed());
+        context.seleniumUtils.logInfo("signIn button: " + context.adminPage , true);
 
 
-}
+    }
+
+    @And("I enter  the new Role Tester  then  I click the add button")
+    public void ieNterTheNewRoleTesterThenIClickTheAddButton() {
+        context.adminPage.enterRole.sendKeys("Testetr");
+        context.adminPage.addButton1.click();
+        Assert.assertTrue(context.adminPage.addButton1.isDisplayed());
+        context.seleniumUtils.waitForVisibility(context.adminPage.tableRow);
+        context.seleniumUtils.logInfo(" Add button: " + context.adminPage , true);
+
+    }
+
+    @Then("I enter Department Role and I click add button")
+    public void iEnterDepartmentRoleAndIClickAddButton() {
+        context.adminPage. departmentAreaRow.sendKeys("Manager");
+        context.adminPage.addClickButton.click();
+        Assert.assertTrue(context.adminPage.addClickButton.isDisplayed());
+        context.seleniumUtils.logInfo(" Add button: DepartmentRole " + context.adminPage , true);
+
+    }
+    }
+

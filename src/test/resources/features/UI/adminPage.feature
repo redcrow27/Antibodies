@@ -102,6 +102,7 @@ Feature: Admin Page tests
     And I click "Sign In" button
     Then I verify Token is available
 
+
   @AddNewroleAndDelete
   Scenario: I add new role and delete the existing one
     Given I enter with "admin" credentials
@@ -110,7 +111,17 @@ Feature: Admin Page tests
     Then I delete the existing one
 
 
+@MarinaNewEmployeeAdminPage
+  Scenario:I input new employee from role and departmend field
+  Given I go to Admin page
+  And I enter  the new Role Tester  then  I click the add button
+  Then I enter Department Role and I click add button
 
+
+
+
+#  Input new employee form’s role and department fields
+ # //should be taking options from Role and Departments tables in Admin page.
 
 
 
