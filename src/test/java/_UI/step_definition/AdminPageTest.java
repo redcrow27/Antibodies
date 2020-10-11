@@ -30,7 +30,7 @@ public class AdminPageTest {
     String id = userForm.getId();
 
 
-    public AdminPageTest(ScenarioContext scenarioContext){
+    public AdminPageTest(ScenarioContext scenarioContext) {
         this.context = scenarioContext;
     }
 
@@ -41,10 +41,10 @@ public class AdminPageTest {
     public void i_verify_fields_are_displayed_with_following_data(List<String> tableFields) {
         for (int i = 0; i < tableFields.size(); i++) {
             context.seleniumUtils.highlightElement(context.commonPage.empDataTableEl().get(i));
-            Assert.assertEquals(tableFields.get(i), context.commonPage.employeeDataTable().get(i) );
-            context.seleniumUtils.logInfo(" Actual field: " + tableFields.get(i) + " Expected field: " + context.commonPage.employeeDataTable().get(i) , false);
+            Assert.assertEquals(tableFields.get(i), context.commonPage.employeeDataTable().get(i));
+            context.seleniumUtils.logInfo(" Actual field: " + tableFields.get(i) + " Expected field: " + context.commonPage.employeeDataTable().get(i), false);
         }
-        context.seleniumUtils.logInfo("Screenshot" , true);
+        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
     /**
@@ -74,7 +74,7 @@ public class AdminPageTest {
         }
         context.commonPage.enterEmployee_btn.click();
 
-        context.seleniumUtils.logInfo("Screenshot" , true);
+        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
     /**
@@ -88,14 +88,14 @@ public class AdminPageTest {
                 Assert.assertEquals(id, context.commonPage.id_TableData.get(i).getText(), "Data Table contains populated ID ");
             }
         }
-        context.seleniumUtils.logInfo("Screenshot" , true);
+        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
     @Then("I verify same Employee Input form and Employee data table displayed")
     public void iVerifySameEmployeeInputFormAndEmployeeDataTableDisplayed() {
 
         context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
-        for(int i = 0; i < context.adminPage.employeeData.length; i++) {
+        for (int i = 0; i < context.adminPage.employeeData.length; i++) {
             context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
             Assert.assertEquals(context.adminPage.employeeData[i], context.commonPage.headerList.get(i).getText());
             context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
@@ -106,16 +106,16 @@ public class AdminPageTest {
     @Then("I verify Token is available")
     public void iVerifyTokenIsAvailable() {
         context.seleniumUtils.click(context.adminPage.copyTokenBtn);
-        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage.copyTokenBtn.getText() , false);
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage.copyTokenBtn.getText(), false);
         context.seleniumUtils.logInfo("Bearer token: " + context.seleniumUtils.getClipboardData(), false);
     }
 
 
     @Given("I create new role")
     public void i_create_new_role() {
-      context.adminPage.createRole.sendKeys("Sould Keeper");
-      context.adminPage.addButton.click();
-      Assert.assertEquals("Soul Keeper","Soul Keeper");
+        context.adminPage.createRole.sendKeys("Sould Keeper");
+        context.adminPage.addButton.click();
+        Assert.assertEquals("Soul Keeper", "Soul Keeper");
 
     }
 
@@ -123,16 +123,17 @@ public class AdminPageTest {
     public void i_delete_the_existing_one() {
         context.seleniumUtils.waitForPageToLoad();
         context.adminPage.DeleteRole.click();
-        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage , true);
+        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage, true);
 
     }
+
     @Given("I go to Admin page")
     public void i_go_to_admin_page() {
-      context.adminPage.username.sendKeys("admin");
-      context.adminPage.password.sendKeys("admin123");
-      context.seleniumUtils.click(context.adminPage.signIn);
-      Assert.assertTrue(context.adminPage.signIn.isDisplayed());
-        context.seleniumUtils.logInfo("signIn button: " + context.adminPage , true);
+        context.adminPage.username.sendKeys("admin");
+        context.adminPage.password.sendKeys("admin123");
+        context.seleniumUtils.click(context.adminPage.signIn);
+        Assert.assertTrue(context.adminPage.signIn.isDisplayed());
+        context.seleniumUtils.logInfo("signIn button: " + context.adminPage, true);
 
 
     }
@@ -143,17 +144,44 @@ public class AdminPageTest {
         context.adminPage.addButton1.click();
         Assert.assertTrue(context.adminPage.addButton1.isDisplayed());
         context.seleniumUtils.waitForVisibility(context.adminPage.tableRow);
-        context.seleniumUtils.logInfo(" Add button: " + context.adminPage , true);
+        context.seleniumUtils.logInfo(" Add button: " + context.adminPage, true);
 
     }
 
     @Then("I enter Department Role and I click add button")
     public void iEnterDepartmentRoleAndIClickAddButton() {
-        context.adminPage. departmentAreaRow.sendKeys("Manager");
+        context.adminPage.departmentAreaRow.sendKeys("Manager");
         context.adminPage.addClickButton.click();
         Assert.assertTrue(context.adminPage.addClickButton.isDisplayed());
-        context.seleniumUtils.logInfo(" Add button: DepartmentRole " + context.adminPage , true);
+        context.seleniumUtils.logInfo(" Add button: DepartmentRole " + context.adminPage, true);
 
     }
+
+    /**
+     * This method validating functional of Deleting role / department
+     * if it assigned to employee
+     */
+
+    @And("I verify Delete role and department in case if it's assigned")
+    public void DeleteRoleDepartment() {
+        for (int i = 0; i < context.adminPage.department_table_count.size(); i++) {
+            if (Integer.parseInt(context.adminPage.department_table_count.get(i).getText().replace(")", "")) != 0) {
+                context.adminPage.department_delete.get(i).click();
+                context.seleniumUtils.logInfo("Warning pop-up for Department table ", true);
+                Assert.assertTrue(context.adminPage.warning_popup.isDisplayed());
+                context.adminPage.warning_close.click();
+                break;
+            }
+        }
+        for (int i = 0; i < context.adminPage.role_table_count.size(); i++) {
+            if (Integer.parseInt(context.adminPage.role_table_count.get(i).getText().replace(")", "")) != 0) {
+                context.adminPage.role_delete.get(i).click();
+                context.seleniumUtils.logInfo("Warning pop-up for Role table", true);
+                Assert.assertTrue(context.adminPage.warning_popup.isDisplayed());
+                context.adminPage.warning_close.click();
+                break;
+            }
+        }
     }
+}
 
