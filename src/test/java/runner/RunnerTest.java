@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json",
                 "rerun:target/re-run.txt"
         },
-        tags = "@MarinaNewEmployeeAdminPage",
+        tags = "@Delete_Dep/Role",
         dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
