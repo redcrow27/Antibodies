@@ -23,16 +23,21 @@ Feature: Admin Page tests
       | user     |
 
   @UserFill-out_Form
-  Scenario: When I fill out User Form  and click Enter Employee button it should populate in Employee data table
+  Scenario Outline: When I fill out User Form "<form>" and click Enter Employee button
     Given I enter with "admin" credentials
     When I click "Sign in" button
-    Then I fill out User Form  and click Enter Employee button
+    Then I fill out User Form "<form>" and click Enter Employee button
       | ID                |
       | First Name        |
       | Last Name         |
       | Select role       |
       | Select department |
     And I verify the Data is populate in Employee data table
+    Examples:
+      | form                    |
+      | all fields              |
+      | with out select options |
+      | leaving fields empty  |
 
   @Count_Option
   Scenario Outline: As "<username>" I need an option to limit the display count of the Employee data table.

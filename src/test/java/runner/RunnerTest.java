@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json",
                 "rerun:target/re-run.txt"
         },
-        tags = "@Count_Option",
+        tags = "@UserFill-out_Form",
         dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {
