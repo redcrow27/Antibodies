@@ -1,5 +1,6 @@
 package _UI.step_definition;
 
+import _UI.pages.CommonPage;
 import common_util.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -51,12 +52,12 @@ public class CommonPageTest {
         String userPassword = ConfigReader.readProperty("user", "src/test/resources/properties/configuration.properties");
         switch (username.toLowerCase()) {
             case "admin":
-                context.seleniumUtils.sendKeys(context.commonPage.usernameField, username);
+                context.seleniumUtils.sendKeys(context.commonPage.usernameField, username.toLowerCase());
                 context.seleniumUtils.sendKeys(context.commonPage.passwordField, adminPassword);
                 context.seleniumUtils.logInfo(" Entered Username: " + username + " Entered Password: " + adminPassword, false);
                 break;
             case "user":
-                context.seleniumUtils.sendKeys(context.commonPage.usernameField, username);
+                context.seleniumUtils.sendKeys(context.commonPage.usernameField, username.toLowerCase());
                 context.seleniumUtils.sendKeys(context.commonPage.passwordField, userPassword);
                 context.seleniumUtils.logInfo(" Entered Username: " + username + " Entered Password: " + userPassword, false);
                 break;
@@ -97,28 +98,39 @@ public class CommonPageTest {
     public void LimitDisplayCount_test(List<String> buttons) {
         for (String s : buttons) {
             switch (s) {
-                case "10btn":
+                case "10 users":
                     context.commonPage.all_10_25_50_btn_list.get(0).click();
+                    context.seleniumUtils.logInfo("When I select : " + s, false);
+                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(0));
                     Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(0).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.logInfo("Expected 10 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
-                case "25btn":
+                case "25 users":
                     context.commonPage.all_10_25_50_btn_list.get(1).click();
+                    context.seleniumUtils.logInfo("When I select : " + s, false);
+                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(1));
                     Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(1).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.logInfo("Expected 25 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
-                case "50btn":
+                case "50 users":
                     context.commonPage.all_10_25_50_btn_list.get(2).click();
+                    context.seleniumUtils.logInfo("When I select : " + s, false);
+                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(2));
                     Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.logInfo("Expected 50 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
-                case "All_bnt":
+                case "All users":
                     context.commonPage.all_10_25_50_btn_list.get(3).click();
+                    context.seleniumUtils.logInfo("When I select : " + s, false);
+                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(3));
                     if (context.commonPage.id_TableData.size() >= 50) {
                         Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) <= context.commonPage.id_TableData.size());
+                        context.seleniumUtils.logInfo("Expected 50 or more users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     }
                     break;
                 default:
                     System.out.println("Wrong button");
             }
-            context.seleniumUtils.logInfo("Clicked button: " + s, true);
         }
     }
 

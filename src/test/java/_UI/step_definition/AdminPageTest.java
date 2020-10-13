@@ -53,7 +53,7 @@ public class AdminPageTest {
 
     @And("I fill out User Form  and click Enter Employee button")
     public void Fill_User_Form(List<String> dataTable) {
-
+        context.seleniumUtils.logInfo("Before adding new employee data to the table", true);
         for (int i = 0; i < 1; i++) {
             switch (dataTable.get(i)) {
                 case "ID":
@@ -74,7 +74,7 @@ public class AdminPageTest {
         }
         context.commonPage.enterEmployee_btn.click();
 
-        context.seleniumUtils.logInfo("Screenshot", true);
+        context.seleniumUtils.logInfo("After adding new employee data to the table", true);
     }
 
     /**
