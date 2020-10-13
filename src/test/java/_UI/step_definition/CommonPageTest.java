@@ -161,8 +161,9 @@ public class CommonPageTest {
         for (int i = 0; i < headerList.size(); i++) {
             context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
             Assert.assertEquals(headerList.get(i), context.commonPage.headerList.get(i).getText());
-            context.seleniumUtils.logInfo("Actual header: " + headerList.get(i) + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), true);
+            context.seleniumUtils.logInfo("Actual header: " + headerList.get(i) + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
+        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
 
