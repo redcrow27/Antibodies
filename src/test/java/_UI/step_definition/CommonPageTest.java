@@ -92,6 +92,14 @@ public class CommonPageTest {
             case "search":
                 context.seleniumUtils.click(context.commonPage.searchBtn);
                 break;
+            case "add department":
+                context.seleniumUtils.moveIntoView(context.adminPage.addClickButton);
+                context.seleniumUtils.click(context.adminPage.addClickButton);
+                break;
+            case "delete btn in department table":
+                context.seleniumUtils.moveIntoView(context.adminPage.department_delete.get(0));
+                context.seleniumUtils.click(context.adminPage.department_delete.get(0));
+                break;
             default:
                 System.out.println("Invalid button name: " + button);
         }

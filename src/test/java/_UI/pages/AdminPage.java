@@ -53,6 +53,12 @@ public class AdminPage {
     public WebElement addButton1;
 
     @FindBy(id = "inputArea2")
+    public WebElement createDep;
+
+    @FindBy(xpath = "//*[@id='root']/div[1]/div[2]/div/div[2]/form/button")
+    public WebElement addDepBtn;
+
+    @FindBy(id = "inputArea2")
     public WebElement departmentAreaRow;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div[1]/div[2]/div/div[2]/form/button")
@@ -69,6 +75,15 @@ public class AdminPage {
 
     @FindBy(css = "div.RoleClass")
     public WebElement tableRow;
+
+    @FindBy(xpath = "((//table)[2])//td")
+    public List<WebElement> departmentList;
+
+    @FindBy(xpath = "((//table)[2])")
+    public  WebElement departmentTable;
+
+    @FindBy(xpath = "(((//table)[2])//tr)[1]")
+    public WebElement firstDepRow;
 
 
     // **********************
