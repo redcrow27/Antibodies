@@ -82,6 +82,7 @@ public class AdminPageTest {
             context.seleniumUtils.logInfo("After adding new employee data to the table", true);
             Assert.assertTrue(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Enabled");
             context.commonPage.enterEmployee_btn.click();
+            context.driver.navigate().refresh();
         }
         if (form.contains("with out select options")) {
             for (int i = 0; i < 1; i++) {
