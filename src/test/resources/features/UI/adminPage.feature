@@ -24,8 +24,24 @@ Feature: Admin Page tests
       | user     |
 
   @UserFill-out_Form
-  Scenario Outline: When I fill out User Form "<form>" and click Enter Employee button
+  Scenario Outline: When I fill out User Form "<form>" as a "Admin' and click Enter Employee button
     Given I enter with "admin" credentials
+    When I click "Sign in" button
+    Then I fill out User Form "<form>" and click Enter Employee button
+      | ID                |
+      | First Name        |
+      | Last Name         |
+      | Select role       |
+      | Select department |
+    And I verify the Data is populate in Employee data table
+    Examples:
+      | form                    |
+      | all fields              |
+      | with out select options |
+      | leaving fields empty    |
+  @UserFill-out_Form
+  Scenario Outline: When I fill out User Form "<form>" as a "User" and click Enter Employee button
+    Given I enter with "user" credentials
     When I click "Sign in" button
     Then I fill out User Form "<form>" and click Enter Employee button
       | ID                |
