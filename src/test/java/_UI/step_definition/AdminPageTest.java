@@ -124,7 +124,6 @@ public class AdminPageTest {
 
     @Then("I verify same Employee Input form and Employee data table displayed")
     public void iVerifySameEmployeeInputFormAndEmployeeDataTableDisplayed() {
-
         context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
         for (int i = 0; i < context.adminPage.employeeData.length; i++) {
             context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
@@ -136,8 +135,9 @@ public class AdminPageTest {
 
     @Then("I verify Token is available")
     public void iVerifyTokenIsAvailable() {
+        context.seleniumUtils.moveIntoView(context.adminPage.copyTokenBtn);
         context.seleniumUtils.click(context.adminPage.copyTokenBtn);
-        context.seleniumUtils.logInfo(" Clicked button: " + context.adminPage.copyTokenBtn.getText(), false);
+        context.seleniumUtils.logInfo("Clicked button: " + context.adminPage.copyTokenBtn.getText()  , true);
         context.seleniumUtils.logInfo("Bearer token: " + context.seleniumUtils.getClipboardData(), false);
     }
 

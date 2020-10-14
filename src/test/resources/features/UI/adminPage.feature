@@ -71,16 +71,6 @@ Feature: Admin Page tests
       | user     |
 
 
-  @inputForm
-  Scenario: Verify Employee Input form and Employee data table displayed.
-    Given I enter with "admin" credentials
-    And I click "Sign In" button
-    Then I verify same Employee Input form and Employee data table displayed
-      | username |
-      | admin    |
-      | user     |
-
-
   @search @userPage
   Scenario Outline: I should be able to search for any employee based on any keyword in Employee data table
     Given I enter with "<username>" credentials
@@ -115,7 +105,6 @@ Feature: Admin Page tests
     And I create new role
     Then I delete the existing one
 
-
   @MarinaNewEmployeeAdminPage
   Scenario:I input new employee from role and departmend field
     Given I go to Admin page
@@ -130,9 +119,6 @@ Feature: Admin Page tests
 
 
 
-
-#  Input new employee form’s role and department fields
- # //should be taking options from Role and Departments tables in Admin page.
 
 
 
