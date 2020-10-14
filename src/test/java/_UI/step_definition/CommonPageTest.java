@@ -81,6 +81,9 @@ public class CommonPageTest {
                 break;
             case "copy token":
                 context.seleniumUtils.click(context.adminPage.copyTokenBtn);
+            case "search" :
+                context.seleniumUtils.click(context.commonPage.searchBtn);
+                break;
             default:
                 System.out.println("Invalid button name: " + button);
         }
@@ -135,37 +138,7 @@ public class CommonPageTest {
     }
 
 
-    /**
-     * This method will search any keyword
-     *
-     * @param keyword String keyword
-     * @param page    String page name
-     */
-    @Then("I verify search for any employee based on any keyword such as {string} in {string} Employee data table")
-    public void iVerifySearchForAnyEmployeeBasedOnAnyKeywordSuchAsInEmployeeDataTable(String keyword, String page) {
-        switch (page.toLowerCase()) {
-            case "admin page":
-                context.seleniumUtils.moveIntoView(context.commonPage.filterField);
-                context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
-                context.seleniumUtils.click(context.commonPage.searchBtn);
-                context.seleniumUtils.sleep(2000);
-                String expected = context.commonPage.adminPageThirdTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
-                Assert.assertEquals(keyword, expected);
-                context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected, false);
-                break;
-            case "user page":
-                context.seleniumUtils.moveIntoView(context.commonPage.filterField);
-                context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
-                context.seleniumUtils.click(context.commonPage.searchBtn);
-                context.seleniumUtils.sleep(2000);
-                String expected2 = context.commonPage.userPageTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
-                Assert.assertEquals(keyword, expected2);
-                context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected2, false);
-                break;
-            default:
-                System.out.println("Invalid page");
-        }
-    }
+
 
     @Then("I verify headers are displayed with following data:")
     public void i_verify_headers_are_displayed_with_following_data(List<String> headerList) {
@@ -211,4 +184,33 @@ public class CommonPageTest {
         }
 
     }
+
+
+    @Then("I enter {string} keyword in Filter field")
+    public void iEnterKeywordInFilterField(String keyword) {
+        context.seleniumUtils.moveIntoView(context.commonPage.filterField);
+        context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
+        context.seleniumUtils.logInfo(" I enter keyword: " + keyword , true);
+    }
+
+    @Then("I verify {string} keyword in {string} Employee data table")
+    public void iVerifyKeywordInEmployeeDataTable(String keyword, String page) {
+        switch (page.toLowerCase()) {
+            case "admin page":
+                String expected = context.commonPage.adminPageThirdTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
+                Assert.assertEquals(keyword, expected);
+                context.seleniumUtils.logInfo(" Keyword match on Employee table : " + expected, true);
+                break;
+            case "user page":
+                String expected2 = context.commonPage.userPageTable.findElement(By.xpath("//*[text()='" + keyword + "']")).getText();
+                Assert.assertEquals(keyword, expected2);
+                context.seleniumUtils.logInfo(" Entered keyword: " + keyword + " Expected keyword: " + expected2, true);
+                break;
+            default:
+                System.out.println("Invalid page");
+        }
+
+    }
+
+
 }

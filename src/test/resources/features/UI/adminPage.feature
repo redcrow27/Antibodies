@@ -38,7 +38,7 @@ Feature: Admin Page tests
       | form                    |
       | all fields              |
       | with out select options |
-      | leaving fields empty  |
+      | leaving fields empty    |
 
   @Count_Option
   Scenario Outline: As "<username>" I need an option to limit the display count of the Employee data table.
@@ -81,18 +81,18 @@ Feature: Admin Page tests
       | user     |
 
 
-  @search
-  Scenario Outline: As all roles I should be able to search for any employee based on any keyword in Employee data table
+  @search @userPage
+  Scenario Outline: I should be able to search for any employee based on any keyword in Employee data table
     Given I enter with "<username>" credentials
     And I click "Sign in" button
-    Then I verify search for any employee based on any keyword such as "SDET" in "<page name>" Employee data table
+    Then I enter "<keyword>" keyword in Filter field
+    And I click "Search" button
+    Then I verify "<keyword>" keyword in "<page name>" Employee data table
     Examples:
-      | username | page name  |
-      | admin    | admin page |
-      | user     | user page  |
-      | username | page name  |
-      | admin    | admin page |
-      | user     | user page  |
+      | username | page name  | keyword |
+      | admin    | admin page | SDET    |
+      | user     | user page  | SDET    |
+
 
   @inputForm
   Scenario: Verify Employee Input form and Employee data table displayed.
