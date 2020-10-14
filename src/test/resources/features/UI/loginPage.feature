@@ -12,6 +12,8 @@ Scenario: Login Page Test
   Given I verify "username" field is displayed
   And I verify "password" field is displayed
   Then I verify "sign in" button is displayed
+  Then I enter with "admin" credentials
+  And I verify "sign in" button is enabled
 
 
 

@@ -11,7 +11,7 @@ import org.testng.annotations.DataProvider;
                 "json:target/cucumber.json",
                 "rerun:target/re-run.txt"
         },
-        tags = "@UserFill-out_Form",
+        tags = "@loginPage",
 
         dryRun = false
 )

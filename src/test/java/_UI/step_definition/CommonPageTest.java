@@ -2,6 +2,7 @@ package _UI.step_definition;
 
 import _UI.pages.CommonPage;
 import common_util.ConfigReader;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
@@ -188,6 +189,8 @@ public class CommonPageTest {
                 context.seleniumUtils.highlightElement(context.commonPage.submitBtn);
                 Assert.assertTrue(context.commonPage.submitBtn.isDisplayed());
                 context.seleniumUtils.logInfo(context.commonPage.submitBtn.getText() + " button is displayed", true);
+                Assert.assertFalse(context.commonPage.submitBtn.isEnabled(), "Enter user button is Disabled");
+                context.seleniumUtils.takeScreenshot(context.commonPage.submitBtn);
                 break;
             default:
                 System.out.println("INVALID BUTTON");
@@ -229,4 +232,18 @@ public class CommonPageTest {
     }
 
 
+    @And("I verify {string} button is enabled")
+    public void iVerifyButtonIsEnabled(String button) {
+        switch (button.toLowerCase()) {
+            case "sign in":
+                context.seleniumUtils.highlightElement(context.commonPage.submitBtn);
+                Assert.assertTrue(context.commonPage.submitBtn.isDisplayed());
+                context.seleniumUtils.logInfo(context.commonPage.submitBtn.getText() + " button is displayed", true);
+                Assert.assertTrue(context.commonPage.submitBtn.isEnabled(), "Enter user button is Enabled");
+                context.seleniumUtils.takeScreenshot(context.commonPage.submitBtn);
+                break;
+            default:
+                System.out.println("INVALID BUTTON");
+        }
+    }
 }
