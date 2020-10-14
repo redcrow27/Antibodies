@@ -95,6 +95,7 @@ Feature: Admin Page tests
   Scenario: Verify Copy Token button will give Bearer Token
     Given I enter with "admin" credentials
     And I click "Sign In" button
+    When I click "Copy Token" button
     Then I verify Token is available
 
 

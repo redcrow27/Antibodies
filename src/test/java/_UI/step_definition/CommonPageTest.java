@@ -15,6 +15,8 @@ import java.util.List;
 public class CommonPageTest {
     ScenarioContext context;
 
+    public String bearerToken;
+
     public CommonPageTest(ScenarioContext scenarioContext) {
         this.context = scenarioContext;
     }
@@ -80,8 +82,12 @@ public class CommonPageTest {
                 context.seleniumUtils.click(context.commonPage.submitBtn);
                 break;
             case "copy token":
+                context.seleniumUtils.moveIntoView(context.adminPage.copyTokenBtn);
                 context.seleniumUtils.click(context.adminPage.copyTokenBtn);
-            case "search" :
+                bearerToken = context.seleniumUtils.getClipboardData();
+                context.seleniumUtils.takeScreenshot(context.adminPage.copyTokenBtn);
+                break;
+            case "search":
                 context.seleniumUtils.click(context.commonPage.searchBtn);
                 break;
             default:
@@ -138,8 +144,6 @@ public class CommonPageTest {
     }
 
 
-
-
     @Then("I verify headers are displayed with following data:")
     public void i_verify_headers_are_displayed_with_following_data(List<String> headerList) {
         context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
@@ -190,7 +194,7 @@ public class CommonPageTest {
     public void iEnterKeywordInFilterField(String keyword) {
         context.seleniumUtils.moveIntoView(context.commonPage.filterField);
         context.seleniumUtils.sendKeys(context.commonPage.filterField, keyword);
-        context.seleniumUtils.logInfo(" I enter keyword: " + keyword , true);
+        context.seleniumUtils.logInfo(" I enter keyword: " + keyword, true);
     }
 
     @Then("I verify {string} keyword in {string} Employee data table")
@@ -210,6 +214,12 @@ public class CommonPageTest {
                 System.out.println("Invalid page");
         }
 
+    }
+
+
+    @Then("I verify Token is available")
+    public void iVerifyTokenIsAvailable() {
+        context.seleniumUtils.logInfo("Bearer token: " + bearerToken, false);
     }
 
 

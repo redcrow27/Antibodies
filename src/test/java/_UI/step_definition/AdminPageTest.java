@@ -133,14 +133,6 @@ public class AdminPageTest {
     }
 
 
-    @Then("I verify Token is available")
-    public void iVerifyTokenIsAvailable() {
-        context.seleniumUtils.moveIntoView(context.adminPage.copyTokenBtn);
-        context.seleniumUtils.click(context.adminPage.copyTokenBtn);
-        context.seleniumUtils.logInfo("Clicked button: " + context.adminPage.copyTokenBtn.getText()  , true);
-        context.seleniumUtils.logInfo("Bearer token: " + context.seleniumUtils.getClipboardData(), false);
-    }
-
 
     @Given("I create new role")
     public void i_create_new_role() {
