@@ -12,6 +12,7 @@ import org.testng.annotations.DataProvider;
                 "rerun:target/re-run.txt"
         },
         tags = "",
+
         dryRun = false
 )
 public class RunnerTest extends AbstractTestNGCucumberTests {

@@ -196,6 +196,7 @@ public class Selenium_utils {
         waitForPageToLoad();
         moveIntoView(element);
         JavascriptExecutor executor = (JavascriptExecutor) context.driver;
+        context.seleniumUtils.highlightElement(element);
 
         try {
             executor.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "color: black; border:3px solid red; background: yellow");

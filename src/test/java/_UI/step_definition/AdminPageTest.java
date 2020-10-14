@@ -53,30 +53,57 @@ public class AdminPageTest {
      * This method will fill-out Employee  form
      */
 
-    @And("I fill out User Form  and click Enter Employee button")
-    public void Fill_User_Form(List<String> dataTable) {
-
-        for (int i = 0; i < 1; i++) {
-            switch (dataTable.get(i)) {
-                case "ID":
-                    context.commonPage.idField.sendKeys(id);
-                case "First Name":
-                    context.commonPage.firstNameField.sendKeys(userForm.getFirstName());
-                case "Last Name ":
-                    context.commonPage.lastNameField.sendKeys(userForm.getLastName());
-                case "Select role":
-                    context.commonPage.selectRoleField.click();
-                    context.commonPage.optionRole.click();
-                case "Select department":
-                    context.commonPage.selectDeptField.click();
-                    context.commonPage.depOption.click();
-                default:
-                    System.out.println("Wrong Table Data");
+    @And("I fill out User Form {string} and click Enter Employee button")
+    public void Fill_User_Form(String form, List<String> dataTable) {
+        context.seleniumUtils.logInfo("Before adding new employee data to the table", true);
+        if (form.contains("all fields")) {
+            for (int i = 0; i < 1; i++) {
+                switch (dataTable.get(i)) {
+                    case "ID":
+                        context.commonPage.idField.sendKeys(id);
+                    case "First Name":
+                        context.commonPage.firstNameField.sendKeys(userForm.getFirstName());
+                    case "Last Name ":
+                        context.commonPage.lastNameField.sendKeys(userForm.getLastName());
+                    case "Select role":
+                        context.commonPage.selectRoleField.click();
+                        context.commonPage.optionRole.click();
+                    case "Select department":
+                        context.commonPage.selectDeptField.click();
+                        context.commonPage.depOption.click();
+                    default:
+                        System.out.println("Wrong Table Data");
+                }
             }
+            context.seleniumUtils.logInfo("After adding new employee data to the table", true);
+            Assert.assertTrue(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Enabled");
+            context.commonPage.enterEmployee_btn.click();
         }
-        context.commonPage.enterEmployee_btn.click();
+        if (form.contains("with out select options")) {
+            for (int i = 0; i < 1; i++) {
+                switch (dataTable.get(i)) {
+                    case "ID":
+                        context.commonPage.idField.sendKeys(id);
+                    case "First Name":
+                        context.commonPage.firstNameField.sendKeys(userForm.getFirstName());
+                    case "Last Name ":
+                        context.commonPage.lastNameField.sendKeys(userForm.getLastName());
+                    default:
+                        System.out.println("Wrong Table Data");
+                }
+            }
+            context.seleniumUtils.logInfo("After adding new employee data to the table", true);
+            context.seleniumUtils.logInfo("Enter user button is Disabled",false);
+            context.seleniumUtils.takeScreenshot(context.commonPage.enterEmployee_btn);
+            Assert.assertFalse(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Disabled");
+        }
+        if (form.contains("leaving fields empty")) {
+            context.seleniumUtils.logInfo("After not adding new employee data to the table", true);
+            context.seleniumUtils.logInfo("Enter user button is Disabled",false);
+            context.seleniumUtils.takeScreenshot(context.commonPage.enterEmployee_btn);
+            Assert.assertFalse(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Disabled");
+        }
 
-        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
     /**
@@ -85,12 +112,14 @@ public class AdminPageTest {
 
     @And("I verify the Data is populate in Employee data table")
     public void Verifying_the_data_is_in_employee_data_table() {
+        context.commonPage.all_10_25_50_btn_list.get(3).click();
         for (int i = 0; i < context.commonPage.id_TableData.size(); i++) {
             if (id.equals(context.commonPage.id_TableData.get(i).getText())) {
                 Assert.assertEquals(id, context.commonPage.id_TableData.get(i).getText(), "Data Table contains populated ID ");
+                context.seleniumUtils.takeScreenshot(context.commonPage.id_TableData.get(i));
+
             }
         }
-        context.seleniumUtils.logInfo("Screenshot", true);
     }
 
     @Then("I verify same Employee Input form and Employee data table displayed")
