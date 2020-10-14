@@ -8,6 +8,7 @@ Feature: Admin Page tests
 #  Scenario: This is sample scenario
 #    Given This is sample scenario step
 
+  @empDataTable
   Scenario Outline: Form should have all fields as Employee data table
     Given I enter with "<username>" credentials
     And I click "Sign in" button
@@ -60,16 +61,16 @@ Feature: Admin Page tests
       | Role       |
       | Department |
     Examples:
-      |username|
-      |admin   |
-      |user    |
+      | username |
+      | admin    |
+      | user     |
 
 
   @inputForm
   Scenario: Verify Employee Input form and Employee data table displayed.
     Given I enter with "admin" credentials
     And I click "Sign In" button
-   Then I verify same Employee Input form and Employee data table displayed
+    Then I verify same Employee Input form and Employee data table displayed
       | username |
       | admin    |
       | user     |
@@ -81,10 +82,9 @@ Feature: Admin Page tests
     And I click "Sign in" button
     Then I verify search for any employee based on any keyword such as "SDET" in "<page name>" Employee data table
     Examples:
-
-      | username |page name|
-      | admin    |admin page|
-      | user     |user page |
+      | username | page name  |
+      | admin    | admin page |
+      | user     | user page  |
       | username | page name  |
       | admin    | admin page |
       | user     | user page  |
@@ -111,13 +111,13 @@ Feature: Admin Page tests
     Then I delete the existing one
 
 
-@MarinaNewEmployeeAdminPage
+  @MarinaNewEmployeeAdminPage
   Scenario:I input new employee from role and departmend field
-  Given I go to Admin page
-  And I enter  the new Role Tester  then  I click the add button
-  Then I enter Department Role and I click add button
+    Given I go to Admin page
+    And I enter  the new Role Tester  then  I click the add button
+    Then I enter Department Role and I click add button
 
-@Delete_Dep/Role
+  @Delete_Dep/Role
   Scenario:If any role or department is assigned to an employee I should not be able to delete it.
     Given I enter with "admin" credentials
     Then I click "Sign in" button

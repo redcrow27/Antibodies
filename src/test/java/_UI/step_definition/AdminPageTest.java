@@ -45,6 +45,8 @@ public class AdminPageTest {
             context.seleniumUtils.logInfo(" Actual field: " + tableFields.get(i) + " Expected field: " + context.commonPage.employeeDataTable().get(i), false);
         }
         context.seleniumUtils.logInfo("Screenshot", true);
+        context.seleniumUtils.moveIntoView(context.commonPage.searchBtn);
+        context.seleniumUtils.logInfo("Employee Table Screenshot", true);
     }
 
     /**
