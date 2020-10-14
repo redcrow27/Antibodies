@@ -5,7 +5,10 @@ import common_util.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pojo.UserForm;
@@ -97,13 +100,13 @@ public class AdminPageTest {
                 }
             }
             context.seleniumUtils.logInfo("After adding new employee data to the table", true);
-            context.seleniumUtils.logInfo("Enter user button is Disabled",false);
+            context.seleniumUtils.logInfo("Enter user button is Disabled", false);
             context.seleniumUtils.takeScreenshot(context.commonPage.enterEmployee_btn);
             Assert.assertFalse(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Disabled");
         }
         if (form.contains("leaving fields empty")) {
             context.seleniumUtils.logInfo("After not adding new employee data to the table", true);
-            context.seleniumUtils.logInfo("Enter user button is Disabled",false);
+            context.seleniumUtils.logInfo("Enter user button is Disabled", false);
             context.seleniumUtils.takeScreenshot(context.commonPage.enterEmployee_btn);
             Assert.assertFalse(context.commonPage.enterEmployee_btn.isEnabled(), "Enter user button is Disabled");
         }
@@ -136,7 +139,6 @@ public class AdminPageTest {
             context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
     }
-
 
 
     @Given("I create new:")
@@ -224,6 +226,34 @@ public class AdminPageTest {
                 break;
             }
         }
+    }
+
+    @And("I enter {string} as a department")
+    public void iEnterAsADepartment(String departmentName) {
+        context.seleniumUtils.sendKeys(context.adminPage.createDep, departmentName);
+        context.seleniumUtils.moveIntoView(context.adminPage.createDep);
+        context.seleniumUtils.takeScreenshot(context.adminPage.createDep);
+        context.seleniumUtils.logInfo("I enter " + departmentName + " as a department name", false);
+    }
+
+
+    @And("I verify {string} department doesn't exist")
+    public void iVerifyDepartmentDoesnTExist(String departmentName) {
+        for (int i = 0; i < context.adminPage.departmentList.size(); i++){
+            if(!context.adminPage.departmentList.get(i).getText().contains(departmentName)){
+                Assert.assertTrue(true);
+            }
+        }
+        context.seleniumUtils.logInfo("Department name " + departmentName + " doesn't exist", false);
+        context.seleniumUtils.takeScreenshot(context.adminPage.departmentTable);
+    }
+
+    @When("I verify {string} exists in department table")
+    public void iVerifyExistsInDepartmentTable(String departmentName) {
+        String expected = context.driver.findElement(By.xpath("//*[text()='" + departmentName + "']")).getText();
+        Assert.assertEquals(departmentName, expected);
+        context.seleniumUtils.logInfo("I verify " + departmentName + " exists in department table", false);
+        context.seleniumUtils.takeScreenshot(context.adminPage.firstDepRow);
     }
 }
 
