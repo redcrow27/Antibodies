@@ -127,6 +127,7 @@ public class AdminPageTest {
         context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
         for (int i = 0; i < context.adminPage.employeeData.length; i++) {
             context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
+            context.seleniumUtils.takeScreenshot(context.commonPage.headerList.get(i));
             Assert.assertEquals(context.adminPage.employeeData[i], context.commonPage.headerList.get(i).getText());
             context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
         }
