@@ -123,7 +123,8 @@ Feature: Admin Page tests
   Scenario: I add new role and delete the existing one
     Given I enter with "admin" credentials
     And I click "Sign in" button
-    And I create new role
+    Then I create new:
+      | role       |
     Then I delete the existing one
 
   @MarinaNewEmployeeAdminPage

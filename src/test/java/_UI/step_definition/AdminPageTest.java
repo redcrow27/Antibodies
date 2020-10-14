@@ -29,6 +29,10 @@ public class AdminPageTest {
     UserForm userForm = new UserForm();
     String id = userForm.getId();
 
+    Faker faker = new Faker();
+    String department = faker.job().field();
+    String role = faker.job().position();
+
 
     public AdminPageTest(ScenarioContext scenarioContext) {
         this.context = scenarioContext;
@@ -135,12 +139,26 @@ public class AdminPageTest {
 
 
 
-    @Given("I create new role")
-    public void i_create_new_role() {
-        context.adminPage.createRole.sendKeys("Sould Keeper");
-        context.adminPage.addButton.click();
-        Assert.assertEquals("Soul Keeper", "Soul Keeper");
-
+    @Given("I create new:")
+    public void i_create_new_role(List<String> list) {
+        for (String s : list) {
+            switch (s) {
+                case ("role"):
+                    context.adminPage.createRole.sendKeys(role);
+                    context.adminPage.addButton.click();
+                    Assert.assertEquals(role, role);
+                    context.seleniumUtils.logInfo("Role was created", true);
+                    break;
+                case ("department"):
+                    context.adminPage.createDep.sendKeys(department);
+                    context.adminPage.addDepBtn.click();
+                    Assert.assertEquals(department, department);
+                    context.seleniumUtils.logInfo("Department was created", true);
+                    break;
+                default:
+                    System.out.println("Wrong button!");
+            }
+        }
     }
 
     @Then("I delete the existing one")
