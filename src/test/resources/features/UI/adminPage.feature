@@ -25,7 +25,7 @@ Feature: Admin Page tests
 
   @UserFill-out_Form
   Scenario Outline: When I fill out User Form "<form>" as a "Admin' and click Enter Employee button
-    Given I enter with "admin" credentials
+    Given I enter with "<username>" credentials
     When I click "Sign in" button
     Then I fill out User Form "<form>" and click Enter Employee button
       | ID                |
@@ -39,7 +39,8 @@ Feature: Admin Page tests
       | all fields              |
       | with out select options |
       | leaving fields empty    |
-  @UserFill-out_Form
+
+  @UserFill-out_For
   Scenario Outline: When I fill out User Form "<form>" as a "User" and click Enter Employee button
     Given I enter with "user" credentials
     When I click "Sign in" button
@@ -124,7 +125,7 @@ Feature: Admin Page tests
     Given I enter with "admin" credentials
     And I click "Sign in" button
     Then I create new:
-      | role       |
+      | role |
     Then I delete the existing one
 
 
@@ -134,11 +135,7 @@ Feature: Admin Page tests
     And I enter  the new Role Tester  then  I click the add button
     Then I enter Department Role and I click add button
 
-  @Delete_Dep/Role
-  Scenario:If any role or department is assigned to an employee I should not be able to delete it.
-    Given I enter with "admin" credentials
-    Then I click "Sign in" button
-    And  I verify Delete role and department in case if it's assigned
+
   @Delete_Dep/Role
   Scenario:If any role or department is assigned to an employee I should not be able to delete it.
     Given I enter with "admin" credentials
