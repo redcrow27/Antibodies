@@ -161,8 +161,8 @@ Feature: Admin Page tests
     Then I click "delete btn in department table" button
     And I verify "<depName>" department doesn't exist
     Examples:
-    |depName|
-    |Tourism  |
+      | depName |
+      | Tourism |
 
 
 
