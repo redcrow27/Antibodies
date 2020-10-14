@@ -5,6 +5,7 @@ import common_util.ConfigReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.List;
@@ -105,33 +106,38 @@ public class CommonPageTest {
 
     @Then("I verify the buttons to limit display count are functional:")
     public void LimitDisplayCount_test(List<String> buttons) {
+        WebElement element;
         for (String s : buttons) {
             switch (s) {
                 case "10 users":
-                    context.commonPage.all_10_25_50_btn_list.get(0).click();
+                    element = context.commonPage.all_10_25_50_btn_list.get(0);
+                    element.click();
                     context.seleniumUtils.logInfo("When I select : " + s, false);
-                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(0));
-                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(0).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.takeScreenshot(element);
+                    Assert.assertTrue(Integer.parseInt(element.getText()) >= context.commonPage.id_TableData.size());
                     context.seleniumUtils.logInfo("Expected 10 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
                 case "25 users":
-                    context.commonPage.all_10_25_50_btn_list.get(1).click();
+                    element = context.commonPage.all_10_25_50_btn_list.get(1);
+                    element.click();
                     context.seleniumUtils.logInfo("When I select : " + s, false);
-                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(1));
-                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(1).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.takeScreenshot(element);
+                    Assert.assertTrue(Integer.parseInt(element.getText()) >= context.commonPage.id_TableData.size());
                     context.seleniumUtils.logInfo("Expected 25 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
                 case "50 users":
-                    context.commonPage.all_10_25_50_btn_list.get(2).click();
+                    element = context.commonPage.all_10_25_50_btn_list.get(2);
+                    element.click();
                     context.seleniumUtils.logInfo("When I select : " + s, false);
-                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(2));
-                    Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) >= context.commonPage.id_TableData.size());
+                    context.seleniumUtils.takeScreenshot(element);
+                    Assert.assertTrue(Integer.parseInt(element.getText()) >= context.commonPage.id_TableData.size());
                     context.seleniumUtils.logInfo("Expected 50 users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);
                     break;
                 case "All users":
-                    context.commonPage.all_10_25_50_btn_list.get(3).click();
+                    element = context.commonPage.all_10_25_50_btn_list.get(3);
+                    element.click();
                     context.seleniumUtils.logInfo("When I select : " + s, false);
-                    context.seleniumUtils.takeScreenshot(context.commonPage.all_10_25_50_btn_list.get(3));
+                    context.seleniumUtils.takeScreenshot(element);
                     if (context.commonPage.id_TableData.size() >= 50) {
                         Assert.assertTrue(Integer.parseInt(context.commonPage.all_10_25_50_btn_list.get(2).getText()) <= context.commonPage.id_TableData.size());
                         context.seleniumUtils.logInfo("Expected 50 or more users;  " + "Actual result is: " + context.commonPage.id_TableData.size(), false);

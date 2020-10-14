@@ -52,7 +52,7 @@ public class CommonPage {
     @FindBy(xpath = "//*[text()='Select department']")
     public WebElement selectDeptField;
 
-    @FindBy(xpath = "//form/select/option[7]")
+    @FindBy(xpath = "//form/select/option[5]")
     public WebElement depOption;
 
     @FindBy(xpath = "//td/select/option[3]")
