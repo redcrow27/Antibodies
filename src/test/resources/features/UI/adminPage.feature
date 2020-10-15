@@ -128,6 +128,7 @@ Feature: Admin Page tests
       | role |
     Then I delete the existing one
 
+
   @MarinaNewEmployeeAdminPage
   Scenario:I input new employee from role and departmend field
     Given I go to Admin page
@@ -149,6 +150,22 @@ Feature: Admin Page tests
       | Select role       |
       | Select department |
     Then  I verify Delete role and department in case if it's assigned
+
+  @AddAndDeleteDepartment
+  Scenario Outline: I verify if I can add new department and delete the existing one
+    Given I enter with "admin" credentials
+    And I click "Sign in" button
+    And I enter "<depName>" as a department
+    And I click "add department" button
+    When I verify "<depName>" exists in department table
+    Then I click "delete btn in department table" button
+    And I verify "<depName>" department doesn't exist
+    Examples:
+      | depName |
+      | Tourism |
+
+
+
 
 
 

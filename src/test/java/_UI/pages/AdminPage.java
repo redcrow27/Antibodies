@@ -76,6 +76,15 @@ public class AdminPage {
     @FindBy(css = "div.RoleClass")
     public WebElement tableRow;
 
+    @FindBy(xpath = "((//table)[2])//td")
+    public List<WebElement> departmentList;
+
+    @FindBy(xpath = "((//table)[2])")
+    public  WebElement departmentTable;
+
+    @FindBy(xpath = "(((//table)[2])//tr)[1]")
+    public WebElement firstDepRow;
+
 
     // **********************
 
