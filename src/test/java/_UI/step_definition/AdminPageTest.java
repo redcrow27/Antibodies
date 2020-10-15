@@ -148,13 +148,15 @@ public class AdminPageTest {
                     context.adminPage.createRole.sendKeys(role);
                     context.adminPage.addButton.click();
                     Assert.assertEquals(role, role);
-                    context.seleniumUtils.logInfo("Role was created", true);
+                    context.seleniumUtils.logInfo("Role was created", false);
+                    context.seleniumUtils.takeScreenshot(context.adminPage.firstRole);
                     break;
                 case ("department"):
                     context.adminPage.createDep.sendKeys(department);
                     context.adminPage.addDepBtn.click();
                     Assert.assertEquals(department, department);
-                    context.seleniumUtils.logInfo("Department was created", true);
+                    context.seleniumUtils.logInfo("Department was created", false);
+                    context.seleniumUtils.takeScreenshot(context.adminPage.firstDep);
                     break;
                 default:
                     System.out.println("Wrong button!");
@@ -201,12 +203,12 @@ public class AdminPageTest {
     }
 
     /**
-     * This method validating functional of Deleting role / department
+     * This method validating functionality of Deleting role / department
      * if it assigned to employee
      */
 
     @And("I verify Delete role and department in case if it's assigned")
-    public void DeleteRoleDepartment() {
+    public void DeleteRoleDepartmentAssigned() {
         for (int i = 0; i < context.adminPage.department_table_count.size(); i++) {
             if (Integer.parseInt(context.adminPage.department_table_count.get(i).getText().replace(")", "")) != 0) {
                 context.adminPage.department_delete.get(i).click();

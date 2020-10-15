@@ -99,6 +99,9 @@ public class AdminPage {
 
     //**********************************
 
-
+@FindBy(xpath = "//*[@id='root']/div[1]/div[2]/div/div[1]/div/table/tbody/tr[1]")
+    public WebElement firstRole;
+@FindBy(xpath = "//*[@id=\"root\"]/div[1]/div[2]/div/div[2]/div/table/tbody/tr[1]")
+    public WebElement firstDep;
 }
 

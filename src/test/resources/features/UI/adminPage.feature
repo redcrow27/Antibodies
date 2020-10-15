@@ -6,7 +6,7 @@ Feature: Admin Page tests
 
 #  Please try to make your steps re-usable
 #  Scenario: This is sample scenario
-#    Given This is sample scenario step
+#  Given This is sample scenario step
 
   @empDataTable
   Scenario Outline: Form should have all fields as Employee data table
@@ -25,7 +25,7 @@ Feature: Admin Page tests
 
   @UserFill-out_Form
   Scenario Outline: When I fill out User Form "<form>" as a "Admin' and click Enter Employee button
-    Given I enter with "<username>" credentials
+    Given I enter with "Admin" credentials
     When I click "Sign in" button
     Then I fill out User Form "<form>" and click Enter Employee button
       | ID                |
@@ -40,9 +40,9 @@ Feature: Admin Page tests
       | with out select options |
       | leaving fields empty    |
 
-  @UserFill-out_For
+  @UserFill-out_Form
   Scenario Outline: When I fill out User Form "<form>" as a "User" and click Enter Employee button
-    Given I enter with "user" credentials
+    Given I enter with "User" credentials
     When I click "Sign in" button
     Then I fill out User Form "<form>" and click Enter Employee button
       | ID                |

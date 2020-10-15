@@ -246,4 +246,5 @@ public class CommonPageTest {
                 System.out.println("INVALID BUTTON");
         }
     }
+
 }
