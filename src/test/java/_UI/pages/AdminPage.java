@@ -44,7 +44,6 @@ public class AdminPage {
 
     @FindBy(xpath = "//button[@class='btn btn-primary roleDelete']")
     public WebElement DeleteRole;
-
     //Marina
     @FindBy(id = "inputArea1")
     public WebElement enterRole;
@@ -85,32 +84,31 @@ public class AdminPage {
     @FindBy(xpath = "(((//table)[2])//tr)[1]")
     public WebElement firstDepRow;
 
-
-    // **********************
-
     @FindBy(xpath = "//div[@class='dep']//tr/td/span")
     public List<WebElement> department_table_count;
+
     @FindBy(xpath = "//button[@class='btn btn-primary roleDelete']")
     public List<WebElement> role_delete;
 
     @FindBy(xpath = "//div[1]/div[2]/div/div[1]//tr/td/span")
     public List<WebElement> role_table_count;
+
     @FindBy(xpath = "//div[@class='dep']//button[@class='btn btn-primary ml-2 roleDelete']")
     public List<WebElement> department_delete;
 
     @FindBy(xpath = "//*[@id='myModal']/div/div/h3")
     public WebElement warning_popup;
+
     @FindBy(xpath = "//*[@id='myModal']/div/div/h3")
     public WebElement wrpop;
 
     @FindBy(id = "submit-btn")
     public WebElement warning_close;
 
-    //**********************************
-
-@FindBy(xpath = "//*[@id='root']/div[1]/div[2]/div/div[1]/div/table/tbody/tr[1]")
+    @FindBy(xpath = "//*[@id='root']/div[1]/div[2]/div/div[1]/div/table/tbody/tr[1]")
     public WebElement firstRole;
-@FindBy(xpath = "//*[@id=\"root\"]/div[1]/div[2]/div/div[2]/div/table/tbody/tr[1]")
+
+    @FindBy(xpath = "//*[@id='root']/div[1]/div[2]/div/div[2]/div/table/tbody/tr[1]")
     public WebElement firstDep;
 }
 
