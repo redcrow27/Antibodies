@@ -91,8 +91,8 @@ public class CommonPage {
 
     /**
      * This method is not get any paramaters but
-     *
      * @return will return list of Employee data table names as a String
+     * @Author: erdi
      */
     public List<String> employeeDataTable() {
         List<String> list = new ArrayList<>();
@@ -106,8 +106,8 @@ public class CommonPage {
 
     /**
      * This method is not get any paramaters but
-     *
      * @return will return list of Employee data table names as a WebElement
+     * @Author: erdi
      */
     public List<WebElement> empDataTableEl() {
         List<WebElement> list = new ArrayList<>();

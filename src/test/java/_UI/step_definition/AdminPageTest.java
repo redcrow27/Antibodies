@@ -43,6 +43,7 @@ public class AdminPageTest {
 
     /**
      * This method validating Employee data table
+     * @Author: erdi
      */
     @Then("I verify fields are displayed with following data:")
     public void i_verify_fields_are_displayed_with_following_data(List<String> tableFields) {
@@ -59,7 +60,6 @@ public class AdminPageTest {
     /**
      * This method will fill-out Employee  form
      */
-
     @And("I fill out User Form {string} and click Enter Employee button")
     public void Fill_User_Form(String form, List<String> dataTable) {
         context.seleniumUtils.logInfo("Before adding new employee data to the table", true);
