@@ -130,17 +130,6 @@ public class AdminPageTest {
         }
     }
 
-    @Then("I verify same Employee Input form and Employee data table displayed")
-    public void iVerifySameEmployeeInputFormAndEmployeeDataTableDisplayed() {
-        context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
-        for (int i = 0; i < context.adminPage.employeeData.length; i++) {
-            context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
-            context.seleniumUtils.takeScreenshot(context.commonPage.headerList.get(i));
-            Assert.assertEquals(context.adminPage.employeeData[i], context.commonPage.headerList.get(i).getText());
-            context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | +" + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
-        }
-    }
-
 
     @Given("I create new:")
     public void i_create_new_role(List<String> list) {
@@ -257,6 +246,28 @@ public class AdminPageTest {
         Assert.assertEquals(departmentName, expected);
         context.seleniumUtils.logInfo("I verify " + departmentName + " exists in department table", false);
         context.seleniumUtils.takeScreenshot(context.adminPage.firstDepRow);
+    }
+
+    @Then("I verify  Employee Input form is displayed")
+    public void iVerifyEmployeeInputFormIsDisplayed() {
+        for (int i = 0; i < context.adminPage.empInput.length; i++) {
+            context.seleniumUtils.highlightElement(context.commonPage.empDataTableEl().get(i));
+            Assert.assertEquals(context.adminPage.empInput[i], context.commonPage.employeeDataTable().get(i));
+            context.seleniumUtils.logInfo(" Actual field: " + context.adminPage.empInput[i] + " Expected field: " + context.commonPage.employeeDataTable().get(i), false);
+        }
+        context.seleniumUtils.logInfo("Screenshot", true);
+
+    }
+
+    @Then("I verify Employee data table is displayed")
+    public void iVerifyEmployeeDataTableIsDisplayed() {
+        context.seleniumUtils.moveIntoView(context.commonPage.headerList.get(0));
+        for (int i = 0; i < context.adminPage.employeeData.length; i++) {
+            context.seleniumUtils.highlightElement(context.commonPage.headerList.get(i));
+            Assert.assertEquals(context.adminPage.employeeData[i], context.commonPage.headerList.get(i).getText());
+            context.seleniumUtils.logInfo("Actual header: " + context.adminPage.employeeData[i] + " | " + "Expected header: " + context.commonPage.headerList.get(i).getText(), false);
+        }
+            context.seleniumUtils.logInfo("Screenshot ", true);
     }
 }
 

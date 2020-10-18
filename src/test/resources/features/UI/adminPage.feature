@@ -102,14 +102,12 @@ Feature: Admin Page tests
 
 
   @inputForm
-  Scenario Outline: Verify Employee Input form and Employee data table is displayed as a "<username>".
-    Given I enter with "<username>" credentials
+  Scenario: Verify Employee Input form and Employee data table is displayed
+    Given I enter with "admin" credentials
     And I click "Sign In" button
-    Then I verify same Employee Input form and Employee data table displayed
-    Examples:
-      | username |
-      | admin    |
-      | user     |
+    Then I verify  Employee Input form is displayed
+    Then I verify Employee data table is displayed
+
 
 
   @token

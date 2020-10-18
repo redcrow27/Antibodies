@@ -66,6 +66,8 @@ public class AdminPage {
     @FindBy(name = "username")
     public WebElement username;
 
+    public String[] empInput = {"ID", "First Name", "Last Name", "Select role", "Select department"};
+
     @FindBy(name = "password")
     public WebElement password;
 
