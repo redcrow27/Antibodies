@@ -109,6 +109,7 @@ public class CommonPageTest {
 
 
     /**
+     * @author Serge
      * This method will click given button
      * To verify the buttons to limit display count are functional
      */

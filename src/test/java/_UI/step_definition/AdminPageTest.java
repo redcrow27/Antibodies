@@ -58,6 +58,7 @@ public class AdminPageTest {
     }
 
     /**
+     * @author Serge
      * This method will fill-out Employee  form
      */
     @And("I fill out User Form {string} and click Enter Employee button")
@@ -115,6 +116,7 @@ public class AdminPageTest {
     }
 
     /**
+     * @author Serge
      * This method validating Employee data was added to table
      */
 
@@ -194,6 +196,7 @@ public class AdminPageTest {
     }
 
     /**
+     * @author Serge
      * This method validating functionality of Deleting role / department
      * if it assigned to employee
      */
